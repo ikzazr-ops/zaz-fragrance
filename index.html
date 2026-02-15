@@ -8,121 +8,135 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin:0;
-    font-family:'Montserrat',sans-serif;
-    background:#0D0D0D;
-    color:#F5F5F5;
+body{
+margin:0;
+font-family:'Montserrat',sans-serif;
+background:#0D0D0D;
+color:#F5F5F5;
+scroll-behavior:smooth;
 }
 
-header {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 40px;
-    background:#111;
-    position:sticky;
-    top:0;
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:#111;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
-h1 {
-    font-family:'Playfair Display',serif;
-    color:#C6A75E;
+h1{
+font-family:'Playfair Display',serif;
+color:#C6A75E;
 }
 
-.hero {
-    text-align:center;
-    padding:80px 20px;
+.hero{
+text-align:center;
+padding:90px 20px;
 }
 
-.hero h2 {
-    font-family:'Playfair Display',serif;
-    font-size:42px;
-    color:#C6A75E;
+.hero h2{
+font-family:'Playfair Display',serif;
+font-size:48px;
+color:#C6A75E;
 }
 
-.hero p {
-    max-width:600px;
-    margin:auto;
-    margin-top:20px;
+.hero p{
+max-width:600px;
+margin:auto;
+margin-top:20px;
+opacity:0.8;
 }
 
-.products {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-    padding:40px;
+.hero button{
+margin-top:30px;
+padding:12px 30px;
+width:auto;
 }
 
-.product {
-    background:#1A1A1A;
-    padding:20px;
-    border-radius:12px;
-    transition:0.3s;
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+padding:40px;
 }
 
-.product:hover {
-    transform:translateY(-8px);
-    box-shadow:0 10px 25px rgba(198,167,94,0.3);
+.product{
+background:#1A1A1A;
+padding:20px;
+border-radius:12px;
+transition:0.3s;
 }
 
-.product img {
-    width:100%;
-    border-radius:10px;
-    margin-bottom:15px;
+.product:hover{
+transform:translateY(-8px);
+box-shadow:0 10px 25px rgba(198,167,94,0.3);
 }
 
-.product h2 {
-    color:#C6A75E;
+.product img{
+width:100%;
+border-radius:10px;
+margin-bottom:15px;
 }
 
-.stock {
-    color:#C6A75E;
-    font-weight:600;
+.product h2{
+color:#C6A75E;
 }
 
-button {
-    background:#C6A75E;
-    border:none;
-    padding:10px;
-    margin-top:10px;
-    cursor:pointer;
-    font-weight:600;
-    width:100%;
+.stock{
+color:#C6A75E;
+font-weight:600;
 }
 
-.quantity {
-    width:60px;
-    padding:5px;
-    margin-top:10px;
+button{
+background:#C6A75E;
+border:none;
+padding:10px;
+margin-top:10px;
+cursor:pointer;
+font-weight:600;
+width:100%;
 }
 
-.bundle, .trust {
-    text-align:center;
-    padding:60px 20px;
-    background:#111;
+button:hover{
+opacity:0.9;
 }
 
-.bundle h2, .trust h2 {
-    color:#C6A75E;
+.quantity{
+width:60px;
+padding:5px;
+margin-top:10px;
 }
 
-.checkout {
-    padding:40px;
-    background:#0D0D0D;
+.bundle,.trust{
+text-align:center;
+padding:70px 20px;
+background:#111;
 }
 
-.remove-btn {
-    background:crimson;
-    padding:5px 8px;
-    font-size:12px;
-    margin-left:10px;
+.bundle h2,.trust h2{
+color:#C6A75E;
 }
 
-footer {
-    text-align:center;
-    padding:20px;
-    color:#777;
+.cart-box{
+padding:40px;
+background:#0D0D0D;
+}
+
+.remove-btn{
+background:crimson;
+padding:5px 8px;
+font-size:12px;
+margin-left:10px;
+cursor:pointer;
+}
+
+footer{
+text-align:center;
+padding:20px;
+color:#777;
 }
 </style>
 </head>
@@ -136,7 +150,7 @@ footer {
 
 <section class="hero">
 <h2>Luxury That Lingers.</h2>
-<p>Discover premium designer fragrances in 10ml travel size. Affordable. Elegant. Unforgettable.</p>
+<p>Premium designer fragrances in travel-size 10ml bottles. Affordable. Elegant. Unforgettable.</p>
 <button onclick="document.querySelector('.products').scrollIntoView({behavior:'smooth'})">
 Shop Now
 </button>
@@ -144,7 +158,7 @@ Shop Now
 
 <section class="products">
 
-<!-- EDIT PRODUCTS BELOW -->
+<!-- PRODUCT TEMPLATE START -->
 
 <div class="product">
 <img src="ckbe.jpg">
@@ -153,9 +167,9 @@ Shop Now
 <p><strong>Top:</strong> Bergamot, Mint</p>
 <p><strong>Middle:</strong> Jasmine, Orchid</p>
 <p><strong>Base:</strong> Musk, Sandalwood</p>
-<p class="stock">🔥 Only 12 left in stock</p>
+<p class="stock" id="stock-ck">🔥 15 left in stock</p>
 <input type="number" value="1" min="1" class="quantity" id="qty-ck">
-<button onclick="addToCart('CK Be',15,'qty-ck')">Add to Cart</button>
+<button onclick="addToCart('CK Be',15,'qty-ck','stock-ck')">Add to Cart</button>
 </div>
 
 <div class="product">
@@ -165,18 +179,64 @@ Shop Now
 <p><strong>Top:</strong> Pineapple, Bergamot</p>
 <p><strong>Middle:</strong> Birch, Patchouli</p>
 <p><strong>Base:</strong> Musk, Vanilla</p>
-<p class="stock">🔥 Only 10 left in stock</p>
+<p class="stock" id="stock-aventus">🔥 12 left in stock</p>
 <input type="number" value="1" min="1" class="quantity" id="qty-aventus">
-<button onclick="addToCart('Creed Aventus',15,'qty-aventus')">Add to Cart</button>
+<button onclick="addToCart('Creed Aventus',15,'qty-aventus','stock-aventus')">Add to Cart</button>
 </div>
 
-<!-- Add other perfumes same way -->
+<div class="product">
+<img src="eros.jpg">
+<h2>Versace Eros</h2>
+<p>RM15 (10ml)</p>
+<p><strong>Top:</strong> Mint, Lemon</p>
+<p><strong>Middle:</strong> Tonka Bean</p>
+<p><strong>Base:</strong> Vanilla, Vetiver</p>
+<p class="stock" id="stock-eros">🔥 10 left in stock</p>
+<input type="number" value="1" min="1" class="quantity" id="qty-eros">
+<button onclick="addToCart('Versace Eros',15,'qty-eros','stock-eros')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="blackopium.jpg">
+<h2>YSL Black Opium</h2>
+<p>RM15 (10ml)</p>
+<p><strong>Top:</strong> Coffee</p>
+<p><strong>Middle:</strong> Jasmine</p>
+<p><strong>Base:</strong> Vanilla</p>
+<p class="stock" id="stock-blackopium">🔥 14 left in stock</p>
+<input type="number" value="1" min="1" class="quantity" id="qty-blackopium">
+<button onclick="addToCart('YSL Black Opium',15,'qty-blackopium','stock-blackopium')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="jadore.jpg">
+<h2>Dior J'adore</h2>
+<p>RM15 (10ml)</p>
+<p><strong>Top:</strong> Ylang-Ylang</p>
+<p><strong>Middle:</strong> Rose</p>
+<p><strong>Base:</strong> Musk</p>
+<p class="stock" id="stock-jadore">🔥 9 left in stock</p>
+<input type="number" value="1" min="1" class="quantity" id="qty-jadore">
+<button onclick="addToCart('Dior J\'adore',15,'qty-jadore','stock-jadore')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="missdior.jpg">
+<h2>Miss Dior</h2>
+<p>RM15 (10ml)</p>
+<p><strong>Top:</strong> Mandarin</p>
+<p><strong>Middle:</strong> Peony</p>
+<p><strong>Base:</strong> Patchouli</p>
+<p class="stock" id="stock-missdior">🔥 11 left in stock</p>
+<input type="number" value="1" min="1" class="quantity" id="qty-missdior">
+<button onclick="addToCart('Miss Dior',15,'qty-missdior','stock-missdior')">Add to Cart</button>
+</div>
 
 </section>
 
 <section class="bundle">
-<h2>🔥 Bundle Offer</h2>
-<p>Buy 3 for RM40 (Save RM5)</p>
+<h2>🔥 Special Offer</h2>
+<p>Buy 3 bottles for RM40 (Automatic discount applied)</p>
 </section>
 
 <section class="trust">
@@ -184,10 +244,10 @@ Shop Now
 <p>✔ 8–12 Hours Longevity</p>
 <p>✔ Travel Friendly 10ml Bottle</p>
 <p>✔ Affordable Luxury</p>
-<p>✔ Fast Shipping in Malaysia</p>
+<p>✔ Fast Shipping Malaysia</p>
 </section>
 
-<section class="checkout">
+<section class="cart-box">
 <h2>Your Cart</h2>
 <ul id="cart-items"></ul>
 <h3>Total: RM<span id="total">0</span></h3>
@@ -195,50 +255,61 @@ Shop Now
 </section>
 
 <footer>
-© 2026 Zaz’s Fragrance. All rights reserved.
+© 2026 Zaz’s Fragrance
 </footer>
 
 <script>
-let cart = [];
-let total = 0;
+let cart=[];
+let total=0;
 
-function addToCart(name, price, qtyId) {
-    let quantity = parseInt(document.getElementById(qtyId).value);
-    cart.push({name, price, quantity});
-    total += price * quantity;
-    updateCart();
+function addToCart(name,price,qtyId,stockId){
+let quantity=parseInt(document.getElementById(qtyId).value);
+cart.push({name,price,quantity});
+total+=price*quantity;
+
+let stockElement=document.getElementById(stockId);
+let currentStock=parseInt(stockElement.innerText.match(/\d+/)[0]);
+stockElement.innerText="🔥 "+(currentStock-quantity)+" left in stock";
+
+applyBundle();
+updateCart();
 }
 
-function updateCart() {
-    let list = document.getElementById("cart-items");
-    list.innerHTML = "";
-
-    cart.forEach((item, index) => {
-        let li = document.createElement("li");
-        li.innerHTML = item.name + " x" + item.quantity +
-        " - RM" + (item.price * item.quantity) +
-        `<button class="remove-btn" onclick="removeItem(${index})">Remove</button>`;
-        list.appendChild(li);
-    });
-
-    document.getElementById("cart-count").innerText = cart.length;
-    document.getElementById("total").innerText = total;
+function applyBundle(){
+let totalItems=cart.reduce((sum,item)=>sum+item.quantity,0);
+if(totalItems>=3){
+total=Math.floor((totalItems/3))*40 + (totalItems%3)*15;
+}
 }
 
-function removeItem(index) {
-    total -= cart[index].price * cart[index].quantity;
-    cart.splice(index,1);
-    updateCart();
+function updateCart(){
+let list=document.getElementById("cart-items");
+list.innerHTML="";
+cart.forEach((item,index)=>{
+let li=document.createElement("li");
+li.innerHTML=item.name+" x"+item.quantity+" - RM"+(item.price*item.quantity)+
+` <button class="remove-btn" onclick="removeItem(${index})">Remove</button>`;
+list.appendChild(li);
+});
+document.getElementById("cart-count").innerText=cart.length;
+document.getElementById("total").innerText=total;
 }
 
-function checkout() {
-    let message = "Hello Zaz’s Fragrance,%0AI would like to order:%0A";
-    cart.forEach(item => {
-        message += "- " + item.name + " x" + item.quantity + "%0A";
-    });
-    message += "Total: RM" + total;
+function removeItem(index){
+cart.splice(index,1);
+total=0;
+cart.forEach(item=>total+=item.price*item.quantity);
+applyBundle();
+updateCart();
+}
 
-    window.open("https://wa.me/60193203231?text=" + message);
+function checkout(){
+let message="Hello Zaz’s Fragrance,%0AI would like to order:%0A";
+cart.forEach(item=>{
+message+="- "+item.name+" x"+item.quantity+"%0A";
+});
+message+="Total: RM"+total;
+window.open("https://wa.me/60193203231?text="+message);
 }
 </script>
 
