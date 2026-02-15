@@ -23,13 +23,28 @@ header {
     background:#111;
     position:sticky;
     top:0;
-    z-index:1000;
 }
 
 h1 {
     font-family:'Playfair Display',serif;
     color:#C6A75E;
-    margin:0;
+}
+
+.hero {
+    text-align:center;
+    padding:80px 20px;
+}
+
+.hero h2 {
+    font-family:'Playfair Display',serif;
+    font-size:42px;
+    color:#C6A75E;
+}
+
+.hero p {
+    max-width:600px;
+    margin:auto;
+    margin-top:20px;
 }
 
 .products {
@@ -58,13 +73,12 @@ h1 {
 }
 
 .product h2 {
-    margin:10px 0;
     color:#C6A75E;
 }
 
-.product p {
-    font-size:14px;
-    margin:4px 0;
+.stock {
+    color:#C6A75E;
+    font-weight:600;
 }
 
 button {
@@ -77,40 +91,38 @@ button {
     width:100%;
 }
 
-button:hover {
-    opacity:0.9;
-}
-
 .quantity {
     width:60px;
     padding:5px;
     margin-top:10px;
 }
 
-.checkout {
-    padding:40px;
+.bundle, .trust {
+    text-align:center;
+    padding:60px 20px;
     background:#111;
 }
 
-.checkout h2 {
+.bundle h2, .trust h2 {
     color:#C6A75E;
+}
+
+.checkout {
+    padding:40px;
+    background:#0D0D0D;
 }
 
 .remove-btn {
     background:crimson;
-    border:none;
     padding:5px 8px;
-    margin-left:10px;
-    cursor:pointer;
     font-size:12px;
+    margin-left:10px;
 }
 
 footer {
     text-align:center;
     padding:20px;
-    background:#0D0D0D;
     color:#777;
-    font-size:14px;
 }
 </style>
 </head>
@@ -122,9 +134,17 @@ footer {
 <div>🛒 Cart (<span id="cart-count">0</span>)</div>
 </header>
 
+<section class="hero">
+<h2>Luxury That Lingers.</h2>
+<p>Discover premium designer fragrances in 10ml travel size. Affordable. Elegant. Unforgettable.</p>
+<button onclick="document.querySelector('.products').scrollIntoView({behavior:'smooth'})">
+Shop Now
+</button>
+</section>
+
 <section class="products">
 
-<!-- MEN -->
+<!-- EDIT PRODUCTS BELOW -->
 
 <div class="product">
 <img src="ckbe.jpg">
@@ -133,6 +153,7 @@ footer {
 <p><strong>Top:</strong> Bergamot, Mint</p>
 <p><strong>Middle:</strong> Jasmine, Orchid</p>
 <p><strong>Base:</strong> Musk, Sandalwood</p>
+<p class="stock">🔥 Only 12 left in stock</p>
 <input type="number" value="1" min="1" class="quantity" id="qty-ck">
 <button onclick="addToCart('CK Be',15,'qty-ck')">Add to Cart</button>
 </div>
@@ -144,56 +165,26 @@ footer {
 <p><strong>Top:</strong> Pineapple, Bergamot</p>
 <p><strong>Middle:</strong> Birch, Patchouli</p>
 <p><strong>Base:</strong> Musk, Vanilla</p>
+<p class="stock">🔥 Only 10 left in stock</p>
 <input type="number" value="1" min="1" class="quantity" id="qty-aventus">
 <button onclick="addToCart('Creed Aventus',15,'qty-aventus')">Add to Cart</button>
 </div>
 
-<div class="product">
-<img src="eros.jpg">
-<h2>Versace Eros</h2>
-<p>RM15 (10ml)</p>
-<p><strong>Top:</strong> Mint, Lemon</p>
-<p><strong>Middle:</strong> Tonka Bean</p>
-<p><strong>Base:</strong> Vanilla, Vetiver</p>
-<input type="number" value="1" min="1" class="quantity" id="qty-eros">
-<button onclick="addToCart('Versace Eros',15,'qty-eros')">Add to Cart</button>
-</div>
+<!-- Add other perfumes same way -->
 
-<!-- WOMEN -->
+</section>
 
-<div class="product">
-<img src="blackopium.jpg">
-<h2>YSL Black Opium</h2>
-<p>RM15 (10ml)</p>
-<p><strong>Top:</strong> Coffee</p>
-<p><strong>Middle:</strong> Jasmine</p>
-<p><strong>Base:</strong> Vanilla</p>
-<input type="number" value="1" min="1" class="quantity" id="qty-blackopium">
-<button onclick="addToCart('YSL Black Opium',15,'qty-blackopium')">Add to Cart</button>
-</div>
+<section class="bundle">
+<h2>🔥 Bundle Offer</h2>
+<p>Buy 3 for RM40 (Save RM5)</p>
+</section>
 
-<div class="product">
-<img src="jadore.jpg">
-<h2>Dior J'adore</h2>
-<p>RM15 (10ml)</p>
-<p><strong>Top:</strong> Ylang-Ylang</p>
-<p><strong>Middle:</strong> Rose</p>
-<p><strong>Base:</strong> Musk</p>
-<input type="number" value="1" min="1" class="quantity" id="qty-jadore">
-<button onclick="addToCart('Dior J'adore',15,'qty-jadore')">Add to Cart</button>
-</div>
-
-<div class="product">
-<img src="missdior.jpg">
-<h2>Miss Dior</h2>
-<p>RM15 (10ml)</p>
-<p><strong>Top:</strong> Mandarin</p>
-<p><strong>Middle:</strong> Peony</p>
-<p><strong>Base:</strong> Patchouli</p>
-<input type="number" value="1" min="1" class="quantity" id="qty-missdior">
-<button onclick="addToCart('Miss Dior',15,'qty-missdior')">Add to Cart</button>
-</div>
-
+<section class="trust">
+<h2>Why Choose Zaz’s?</h2>
+<p>✔ 8–12 Hours Longevity</p>
+<p>✔ Travel Friendly 10ml Bottle</p>
+<p>✔ Affordable Luxury</p>
+<p>✔ Fast Shipping in Malaysia</p>
 </section>
 
 <section class="checkout">
