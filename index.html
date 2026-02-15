@@ -9,67 +9,108 @@
 
 <style>
 body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: #0D0D0D;
-    color: #F5F5F5;
+    margin:0;
+    font-family:'Montserrat',sans-serif;
+    background:#0D0D0D;
+    color:#F5F5F5;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 40px;
-    background: #111;
-    position: sticky;
-    top: 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+    background:#111;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
 h1 {
-    font-family: 'Playfair Display', serif;
-    color: #C6A75E;
+    font-family:'Playfair Display',serif;
+    color:#C6A75E;
+    margin:0;
 }
 
 .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    padding:40px;
 }
 
 .product {
-    background: #1A1A1A;
-    padding: 20px;
-    border-radius: 12px;
-    transition: 0.3s;
+    background:#1A1A1A;
+    padding:20px;
+    border-radius:12px;
+    transition:0.3s;
 }
 
 .product:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(198,167,94,0.3);
+    transform:translateY(-8px);
+    box-shadow:0 10px 25px rgba(198,167,94,0.3);
+}
+
+.product img {
+    width:100%;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.product h2 {
+    margin:10px 0;
+    color:#C6A75E;
+}
+
+.product p {
+    font-size:14px;
+    margin:4px 0;
 }
 
 button {
-    background: #C6A75E;
-    border: none;
-    padding: 10px;
-    margin-top: 10px;
-    cursor: pointer;
-    font-weight: bold;
+    background:#C6A75E;
+    border:none;
+    padding:10px;
+    margin-top:10px;
+    cursor:pointer;
+    font-weight:600;
+    width:100%;
+}
+
+button:hover {
+    opacity:0.9;
 }
 
 .quantity {
-    width: 60px;
-    padding: 5px;
+    width:60px;
+    padding:5px;
+    margin-top:10px;
 }
 
 .checkout {
-    padding: 40px;
-    background: #111;
+    padding:40px;
+    background:#111;
+}
+
+.checkout h2 {
+    color:#C6A75E;
 }
 
 .remove-btn {
-    background: crimson;
-    margin-left: 10px;
+    background:crimson;
+    border:none;
+    padding:5px 8px;
+    margin-left:10px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+footer {
+    text-align:center;
+    padding:20px;
+    background:#0D0D0D;
+    color:#777;
+    font-size:14px;
 }
 </style>
 </head>
@@ -86,6 +127,7 @@ button {
 <!-- MEN -->
 
 <div class="product">
+<img src="images/ckbe.jpg">
 <h2>CK Be</h2>
 <p>RM15 (10ml)</p>
 <p><strong>Top:</strong> Bergamot, Mint</p>
@@ -96,6 +138,7 @@ button {
 </div>
 
 <div class="product">
+<img src="images/aventus.jpg">
 <h2>Creed Aventus</h2>
 <p>RM15 (10ml)</p>
 <p><strong>Top:</strong> Pineapple, Bergamot</p>
@@ -106,6 +149,7 @@ button {
 </div>
 
 <div class="product">
+<img src="images/eros.jpg">
 <h2>Versace Eros</h2>
 <p>RM15 (10ml)</p>
 <p><strong>Top:</strong> Mint, Lemon</p>
@@ -118,6 +162,7 @@ button {
 <!-- WOMEN -->
 
 <div class="product">
+<img src="images/blackopium.jpg">
 <h2>YSL Black Opium</h2>
 <p>RM15 (10ml)</p>
 <p><strong>Top:</strong> Coffee</p>
@@ -128,6 +173,7 @@ button {
 </div>
 
 <div class="product">
+<img src="images/jadore.jpg">
 <h2>Dior J'adore</h2>
 <p>RM15 (10ml)</p>
 <p><strong>Top:</strong> Ylang-Ylang</p>
@@ -138,6 +184,7 @@ button {
 </div>
 
 <div class="product">
+<img src="images/missdior.jpg">
 <h2>Miss Dior</h2>
 <p>RM15 (10ml)</p>
 <p><strong>Top:</strong> Mandarin</p>
@@ -156,6 +203,10 @@ button {
 <button onclick="checkout()">Checkout via WhatsApp</button>
 </section>
 
+<footer>
+© 2026 Zaz’s Fragrance. All rights reserved.
+</footer>
+
 <script>
 let cart = [];
 let total = 0;
@@ -173,7 +224,7 @@ function updateCart() {
 
     cart.forEach((item, index) => {
         let li = document.createElement("li");
-        li.innerHTML = item.name + " x" + item.quantity + 
+        li.innerHTML = item.name + " x" + item.quantity +
         " - RM" + (item.price * item.quantity) +
         `<button class="remove-btn" onclick="removeItem(${index})">Remove</button>`;
         list.appendChild(li);
@@ -196,7 +247,7 @@ function checkout() {
     });
     message += "Total: RM" + total;
 
-    window.open("https://wa.me/60193203231text=" + message);
+    window.open("https://wa.me/60193203231?text=" + message);
 }
 </script>
 
